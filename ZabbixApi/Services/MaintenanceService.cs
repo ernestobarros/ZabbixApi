@@ -31,7 +31,7 @@ namespace ZabbixApi.Services
             @params.AddOrReplace("selectTimeperiods", includeHelper.WhatShouldInclude(MaintenanceInclude.TimePeriods));
 
             @params.AddOrReplace("filter", filter);
-            
+
             return @params;
         }
 

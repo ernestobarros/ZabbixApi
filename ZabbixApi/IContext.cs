@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using ZabbixApi.CustomJsonConverters;
 using ZabbixApi.Helper;
 using ZabbixApi.Services;
 
@@ -111,7 +112,11 @@ namespace ZabbixApi
             _serializerSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
-                Converters = new JsonConverter[] { new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter() }
+                Converters = new JsonConverter[]
+                {
+                    new Newtonsoft.Json.Converters.JavaScriptDateTimeConverter(),
+                    new MaintenanceJsonConverter()
+                }
             };
 
             Check.IsNotNullOrWhiteSpace(url, "ZabbixApi.url");
